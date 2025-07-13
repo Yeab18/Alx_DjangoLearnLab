@@ -1,21 +1,19 @@
 ```python
 from bookshelf.models import Book
 
-# 1. Get the book to update
+# Get existing book
 book = Book.objects.get(title="1984")
 
-# 2. Update the title
+# Update attributes
 book.title = "Nineteen Eighty-Four"
-
-# 3. Save changes
 book.save()
 
-# Verify update
-updated_book = Book.objects.get(id=book.id)
-print(f"Updated Title: {updated_book.title}")
+# Verification
+updated = Book.objects.get(id=book.id)
+print(f"Title after update: {updated.title}")
 ```
 
 Expected Output:
 ```
-Updated Title: Nineteen Eighty-Four
+Title after update: Nineteen Eighty-Four
 ```
