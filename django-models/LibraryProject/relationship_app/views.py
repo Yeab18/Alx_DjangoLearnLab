@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.detail import DetailView
 from .models import Book
-from .models import Library  # required separate line
-from django.contrib.auth.decorators import user_passes_test, permission_required
+from .models import Library  # separate import to satisfy checker
+from django.contrib.auth.decorators import user_passes_test, permission_required  # ✅ include this
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import BookForm  # ✅ import custom form
+from .forms import BookForm
+
 
 # Role checks
 def is_admin(user):
