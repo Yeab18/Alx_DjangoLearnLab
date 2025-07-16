@@ -39,10 +39,18 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+class Librarian(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    library = models.ForeignKey(Library, on_delete=models.CASCADE)  # Each librarian is assigned to a library
+
+    def __str__(self):
+        return f"{self.user.username} - {self.library.name}"
+
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)  # Changed from CharField to ForeignKey
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     published_date = models.DateField()
+    library = models.ForeignKey(Library, on_delete=models.CASCADE)  # Each book belongs to a library
 
     def __str__(self):
         return self.title
