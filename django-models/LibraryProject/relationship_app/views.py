@@ -40,14 +40,14 @@ class LibraryDetailView(DetailView):
     template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
 
-# ✅ User registration view
+# ✅ User registration view with correct template path
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Log in after registration
-            return redirect('home')  # Change 'home' to your desired page
+            login(request, user)  # Automatically log in user
+            return redirect('home')  # Change 'home' to your actual homepage name
     else:
         form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'relationship_app/register.html', {'form': form})  # ✅ Correct path
